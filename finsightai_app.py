@@ -474,7 +474,7 @@ class Transaction(db.Model):
             'category': self.category,
             'mood': self.mood,
             'location': self.location,
-            'transaction_date': self.transaction_date.isoformat() if self.transaction_date else None,
+            'transaction_date': str(self.transaction_date) if self.transaction_date else None,
             'transaction_type': self.transaction_type
         }
 
