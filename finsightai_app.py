@@ -1001,7 +1001,7 @@ def get_top_spending_locations(email):
                 'color': category_colors.get(transaction.category, '#9CA3AF'),
                 'transaction_id': transaction.id,
                 'mood': transaction.mood,
-                'date': transaction.transaction_date.isoformat() if transaction.transaction_date else None
+                'date': str(transaction.transaction_date) if transaction.transaction_date else None
             })
         
         print(f"Returning {len(spending_locations)} individual spending points")
@@ -1124,7 +1124,7 @@ def get_moods_transactions(email):
         mood_data[txn.mood].append({
             "amount": float(txn.amount),
             "description": txn.description,
-            "date": txn.transaction_date.isoformat()
+            "date": str(txn.transaction_date)
         })
     
     # Group transactions by mood with total amount
@@ -1163,8 +1163,8 @@ def get_calendar_events(user_email):
             'id': ev.id,
             'title': ev.title,
             'description': ev.description,
-            'start_date': ev.start_date.isoformat(),
-            'end_date': ev.end_date.isoformat() if ev.end_date else None,
+            'start_date': str(ev.start_date),
+            'end_date': str(ev.end_date) if ev.end_date else None,
             'target_amount': ev.target_amount or 0,
             'saved_amount': ev.saved_amount or 0,
             'progress_percent': progress_percent,
@@ -1197,8 +1197,8 @@ def add_update_event():
         'id': ev.id,
         'title': ev.title,
         'description': ev.description,
-        'start_date': ev.start_date.isoformat(),
-        'end_date': ev.end_date.isoformat() if ev.end_date else None,
+        'start_date': str(ev.start_date),
+        'end_date': str(ev.end_date) if ev.end_date else None,
         'target_amount': ev.target_amount,
         'saved_amount': ev.saved_amount,
         'progress_percent': ev.saved_amount/ev.target_amount*100 if ev.target_amount > 0 else 0,
@@ -1238,7 +1238,7 @@ def get_goals(user_email):
             'target': g.target,
             'current': g.current,
             'category': g.category,
-            'deadline': g.deadline.isoformat(),
+            'deadline': str(g.deadline),
             'color': g.color,
             'icon': g.icon,
             'description': g.description,
@@ -1255,7 +1255,7 @@ def get_achievements(user_email):
             'id': str(a.id),
             'title': a.title,
             'description': a.description,
-            'date': a.date.isoformat(),
+            'date': str(a.date),
             'icon': a.icon,
             'color': a.color
         })
